@@ -26,14 +26,14 @@ function addList() {
         span.classList.toggle("completed");
     });
 
-    // Use a button for delete (more semantic)
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "X";
     deleteBtn.classList.add("delete-btn");
     deleteBtn.setAttribute("aria-label", "Delete todo");
+    deleteBtn.type = "button"; // ✅ Fix: prevents form submission when pressing Enter
 
-    // Add delete behavior
-    deleteBtn.addEventListener("click", () => {
+    deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent accidental strike-through
         li.remove();
     });
 
@@ -43,6 +43,5 @@ function addList() {
 
     input.value = "";
 }
-
 
 
